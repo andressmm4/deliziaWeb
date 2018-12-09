@@ -70,22 +70,42 @@ function showTablesOcup()
 
 // FIXME: lista reservaciones realizadas
 
-function printReservations()
+function printReservations($valFact)
 {
   require 'connection.php';
 
-  $_SELECTreservations_SQL = "SELECT reservations.id_rev, reservations.name, reservations.num_person, reservations.table_asigned, reservations.fact
-  FROM reservations WHERE reservations.fact = '0'
-  ORDER BY tables.id_table ASC";
 
-  $consult = mysqli_query($con, $_SELECTreservations_SQL);
+  $_SELECTreservations_SQL = "SELECT reservations.id_rev, reservations.name, reservations.num_person, reservations.consumo_asigned, reservations.table_asigned, reservations.fact, consumo.total_cost
+  FROM reservations, consumo WHERE reservations.consumo_asigned = consumo.id_cons AND reservations.fact = '$valFact'
+  ORDER BY reservations.id_rev ASC";
 
-  while ($resultRev = mysqli_fetch_array($const)) {
+  $consultShow = mysqli_query($con, $_SELECTreservations_SQL);
+  
+
+  while ($resultRev = mysqli_fetch_array($consultShow)) {
   ?>
-    
+    <tr>
+      <td>
+        <?php print $resultRev['id_rev'];?>
+      </td>
+      <td>
+        <?php print $resultRev['name']; ?>
+      </td>
+      <td>
+        <?php print $resultRev['table_asigned'] ?>
+      </td>
+      <td>
+        <?php print $resultRev['num_person'] ?>        
+      </td>
+      <td class="text-primary">
+        Q.<?php print $resultRev['total_cost'] ?>        
+      </td>
+    </tr>
   <?php
   }
 }
+
+
 
 
 
