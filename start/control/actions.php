@@ -1,18 +1,18 @@
 <?php
-require '../model/user_validation.php';
 
-if (isset($_REQUEST['login'])) {
-  // obtemos loa valores del form
-  $user = $_REQUEST['login_user'];
-  $pass = $_REQUEST['pass'];
-  // Ejecutamos la validacion del Usuario
-  UserValidation($user, $pass);
+// FIXME: Guardar una reservación
+
+if (isset($_REQUEST['asigned'])) {
+  
+  // Obtemos datos de la reservación
+  $name = $_REQUEST['name'];
+  $num_p = $_REQUEST['numP'];
+  $table = $_REQUEST['tablesSelect'];
+
+  print "Si entro al if";
+  require '../model/methods.php';
+  saveReservation( $name, $num_p, $table);
+
 }
-
-// logout
-if (isset($_REQUEST['logout'])) {
-  logaut();
-}
-
 
 ?>

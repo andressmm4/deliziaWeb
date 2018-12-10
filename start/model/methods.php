@@ -10,6 +10,7 @@ function showTablesDis()
 
   while ($consult = mysqli_fetch_array($result)) {
     ?>
+    <!-- FIXME: Card de las masas disponibles -->
     <div class="col-xl-2 col-md-3 col-sm-6 hidden">
       <div class="card card-stats">
         <div class="card-header card-header-info card-header-icon">
@@ -22,11 +23,55 @@ function showTablesDis()
         <div class="card-footer">
           <div class="">
             <input hidden type="text" name="tablesSelect" value="<?php print $consult['id_table']; ?>">
-            <input type="button" class="btn btn-success" value="Asignar">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<?php print $consult['id_table']; ?>">
+              Asignar
+            </button>
           </div>
         </div>
       </div>
     </div>
+    <!-- FIXME: modal de la mesa, para realizar reservación -->
+    <div class="modal fade" id="<?php print $consult['id_table']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">
+              <?php print $consult['id_table']; ?>
+              
+            </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <br>
+            <form action="">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">face</i>
+                  </span>
+                </div>
+                <input style="color: black;"  type="text" class="form-control" name="name" placeholder="Nombre">
+              </div>
+              <br>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">people</i>
+                  </span>
+                </div>
+                <input style="color: black;" type="number" class="form-control" name="numP" placeholder="Num Perosnas">
+              </div>
+              <input hidden type="text" name="tablesSelect" value="<?php print $consult['id_table']; ?>">
+              <input type="submit" class="btn btn-primary" id="asigned" name="asigned" value="Guardar"> 
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <?php
   }
 }
@@ -35,7 +80,7 @@ function showTablesDis()
 // FIXME: Reservaciones activas
 function showTablesOcup()
 {
-  require_once 'connection.php';
+  require 'connection.php';
 
   $_SELECT_SQL = "SELECT reservations.id_rev, reservations.name, reservations.num_person, reservations.consumo_asigned, reservations.table_asigned, reservations.fact,
   consumo.id_cons, consumo.total_cost,
@@ -113,9 +158,13 @@ function printReservations($valFact)
 function changeAvailable($tableSelect, $val)
 {
   require 'connection.php';
-  $_UPDATEtable_SQL = "UPDATE tables SET available = '$val' WHERE tables.id_table = $tableSelect";
-  $updateTable = mysqli_query($con, $_UPDATEtable_SQL);
+
+  try{
+    $_UPDATEtable_SQL = "UPDATE tables SET available = '$val' WHERE tables.id_table = $tableSelect";
+    $updateTable = mysqli_query($con, $_UPDATEtable_SQL);
+  } catch (\Exception $e) {}
 }
+ 
 
 // FIXME: Actualizar consumo
 function updateConsumo($id_cons, $desc, $const)
@@ -126,20 +175,6 @@ function updateConsumo($id_cons, $desc, $const)
     $_INSERTconsumo_SQL =  "INSERT INTO consumo (id_cons, descript, total_cost) VALUES ('$id_cons', '$desc', '$const')";
     $insertConsumo = mysqli_query($con, $_INSERTconsumo_SQL);
 
-    if ($insertReservation) {
-      ?>
-      <script type="text/javascript">
-        console.info("Datos de tb consumo guardados")
-      </script>
-    <?php
-    } else {
-    ?>
-      <script type="text/javascript">
-        console.error("Datos de tb consumo no guardados")
-      </script>
-      <?php
-    }
-
   } catch (\Exception $e) {}
 }
 
@@ -147,6 +182,9 @@ function updateConsumo($id_cons, $desc, $const)
 function saveReservation($name, $num_p, $table)
 {
   require 'connection.php';
+
+  $today = date('Y-m-d');
+
   try {
     $_COUNT_SQL = "SELECT count(*) AS total FROM reservations";
     $resultCount = mysqli_query($con, $_COUNT_SQL);
@@ -166,29 +204,16 @@ function saveReservation($name, $num_p, $table)
     $insertReservation = mysqli_query($con, $_INSERTreservation_SQL);
 
     if ($insertReservation) {
-    ?>
-      <script type="text/javascript">
-        console.info("Datos de tb reservations guardados")
-      </script>
-    <?php
-
       updateConsumo($cons_asing, '0' , '0');
 
       $val = '1';
       changeAvailable($table, $val);
-
-    } else {
-    ?>
-      <script type="text/javascript">
-        console.error("Datos de tb reservations no guardados")
-      </script>
-    <?php
     }
 
   } catch (\Exception $e) {}
   ?>
   <script type="text/javascript">
-    setTimeout("window.location.href = 'reservation.php'", 3000)
+    setTimeout("window.location.href = 'tables.php'", 0000)
   </script>
   <?php
 
