@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
       <div class="content">
         <div class="container-fluid">
           <div id="tablesDis" class="row">
-              
+            <?php showTablesDis() ?>
           </div>
         </div>
 
@@ -59,19 +59,6 @@ if (isset($_SESSION['user'])) {
   <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-  <script>
-    function consultReal() {
-      var data = $.ajax({
-        url: "../model/showTablesDis.php",
-        dataType: "text",
-        async: false
-      }).responseText;
-      
-      var content = document.getElementById('tablesDis')
-      content.innerHTML = data
-    }
-    setInterval(consultReal, 1000)
-  </script>
 </body>
 
 </html>
