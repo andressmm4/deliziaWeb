@@ -99,7 +99,7 @@ function showTablesOcup()
           <div class="card-icon">
             <h2><?php print $consult['id_table']; ?></h2>
           </div>
-          <p class="card-category">Mesa cupada por:</p>
+          <p class="card-category">Mesa ocupada por:</p>
           <h3 class="card-title"><?php print $consult['num_person']; ?></h3>
         </div>
         <div class="card-footer">
@@ -123,6 +123,20 @@ function disTablesData()
 
     while ($consult = mysqli_fetch_array($resultCount)) {
       $totalTables = $consult['totalTables'];
+      print $totalTables;
+    }
+  } catch (\Exception $e) {}
+}
+function totalCons()
+{
+  require 'connection.php';
+  
+  try {
+    $_COUNT_SQL = "SELECT count(*) AS totalCost FROM consumo WHERE consumo.total_cost >= '0'";
+    $resultCount = mysqli_query($con, $_COUNT_SQL);
+
+    while ($consult = mysqli_fetch_array($resultCount)) {
+      $totalTables = $consult['totalCost'];
       print $totalTables;
     }
   } catch (\Exception $e) {}

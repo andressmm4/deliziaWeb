@@ -39,17 +39,19 @@ if(isset($_SESSION['user'])){
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">beenhere</i>
                   </div>
                   <p class="card-category"></p>
-                  <h3 class="card-title"><?php disTablesData() ?>/50
-                    <small>Disponibles</small>
+
+                  <h4>Disponibles</h4>
+                  <h3 class="card-title"><?php disTablesData() ?>/20
+                   
                   </h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons text-warning">warning</i>
-                    <a href="#pablo" class="warning-link">Get More Space...</a>
+                    <i class="material-icons text-warning">check_box</i>Cantida De Mesas Disponibles
+                    
                   </div>
                 </div>
               </div>
@@ -58,14 +60,15 @@ if(isset($_SESSION['user'])){
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">attach_money</i>
                   </div>
-                  <p class="card-category">Revenue</p>
-                  <h3 class="card-title">$34,245</h3>
+                  <p class="card-category"></p>
+                  <h4>Total Consumos</h4>
+                  <h3 class="card-title">$<?php totalCons() ?></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
+                    <i class="material-icons">date_range</i> Total de consumos del día
                   </div>
                 </div>
               </div>
@@ -74,14 +77,15 @@ if(isset($_SESSION['user'])){
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
+                    <i class="material-icons">supervisor_account</i>
                   </div>
-                  <p class="card-category">Fixed Issues</p>
+                  <p class="card-category"></p>
+                  <h4>Total Personas<h4>
                   <h3 class="card-title">75</h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Github
+                    <i class="material-icons">supervisor_account</i> Personas que fueron atendidas al día
                   </div>
                 </div>
               </div>
