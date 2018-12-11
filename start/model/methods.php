@@ -113,6 +113,21 @@ function showTablesOcup()
   }
 }
 
+function disTablesData()
+{
+  require 'connection.php';
+  
+  try {
+    $_COUNT_SQL = "SELECT count(*) AS totalTables FROM tables WHERE tables.available = '0'";
+    $resultCount = mysqli_query($con, $_COUNT_SQL);
+
+    while ($consult = mysqli_fetch_array($resultCount)) {
+      $totalTables = $consult['totalTables'];
+      print $totalTables;
+    }
+  } catch (\Exception $e) {}
+}
+
 // FIXME: lista reservaciones realizadas
 
 function printReservations($valFact)
@@ -218,4 +233,7 @@ function saveReservation($name, $num_p, $table)
   <?php
 
 }
+
+
+
 ?>
