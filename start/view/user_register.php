@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+  require '../control/actions.php';
+  require_once '../model/methods.php';
+?>
 <!doctype html>
 <html lang="en">
 
@@ -219,3 +225,8 @@
 <script src="assets/js/jquery.validate.min.js"></script>
 
 </html>
+<?php
+} else {
+  print '<script> window.location="error_login.php" </script>';
+}
+ ?>
