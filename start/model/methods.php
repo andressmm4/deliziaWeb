@@ -127,21 +127,35 @@ function disTablesData()
     }
   } catch (\Exception $e) {}
 }
+
 function totalCons()
 {
   require 'connection.php';
   
   try {
-    $_COUNT_SQL = "SELECT count(*) AS totalCost FROM consumo WHERE consumo.total_cost >= '0'";
+    $_COUNT_SQL = "SELECT SUM(total_cost) AS result FROM consumo";
     $resultCount = mysqli_query($con, $_COUNT_SQL);
 
     while ($consult = mysqli_fetch_array($resultCount)) {
-      $totalTables = $consult['totalCost'];
-      print $totalTables;
+      $totalCons = $consult['result'];
+      print $totalCons;
     }
   } catch (\Exception $e) {}
 }
+function totalPers()
+{
+  require 'connection.php';
+  
+  try {
+    $_COUNT_SQL = "SELECT SUM(num_person) AS suma FROM reservations";
+    $resultCount = mysqli_query($con, $_COUNT_SQL);
 
+    while ($consult = mysqli_fetch_array($resultCount)) {
+      $totalPers = $consult['suma'];
+      print $totalPers;
+    }
+  } catch (\Exception $e) {}
+}
 // FIXME: lista reservaciones realizadas
 
 function printReservations($valFact)
