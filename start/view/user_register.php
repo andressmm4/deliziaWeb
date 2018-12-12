@@ -207,7 +207,7 @@ if (isset($_SESSION['user'])) {
 
 		<div class="footer">
 			<div class="container text-center">
-				Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>. Free download <a href="http://www.creative-tim.com/product/material-bootstrap-wizard">here.</a>
+				Create by <a href="#">A.S.A</a> DEVELOPERS
 			</div>
 		</div>
 	</div>
