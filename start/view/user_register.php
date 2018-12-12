@@ -72,7 +72,7 @@
 									<div class="tab-pane" id="details">
 										<div class="row">
 											<div class="col-sm-12">
-												<h4 class="info-text">Datos Personales.</h4>
+												<h4 class="info-text">Datos Personales</h4>
 											</div>
 											<div class="col-sm-6">
 												<div class="input-group">
