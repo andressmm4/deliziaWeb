@@ -13,19 +13,19 @@
         </a>
       </li>
       <li class="nav-item ">
-        <a id="notification" class="nav-link" href="tables.php">
+        <a id="tables" class="nav-link" href="tables.php">
           <i class="material-icons">table_chart</i>
           <p>Mesas</p>
         </a>
       </li>
       <li class="nav-item ">
-        <a id="notification" class="nav-link" href="add.php">
+        <a id="consumo" class="nav-link" href="add.php">
           <i class="material-icons">create</i>
           <p>Consumo</p>
         </a>
       </li>
       <li class="nav-item ">
-        <a id="tables" class="nav-link" href="reservation.php">
+        <a id="reserv" class="nav-link" href="reservation.php">
           <i class="material-icons">content_paste</i>
           <p>Reservaciones</p>
         </a>
@@ -47,7 +47,9 @@
     </ul>
   </div>
 </div>
-<script src="" charset="utf-8">
-  const btnPrincipal = document.getElementById('principal')
-  document.getElementById('')
+<script>
+  var dash 
+  var tb
+  var cons
+  var resv
 </script>
