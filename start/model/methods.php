@@ -99,7 +99,7 @@ function showTablesOcup()
           <div class="card-icon">
             <h2><?php print $consult['id_table']; ?></h2>
           </div>
-          <p class="card-category">Mesa cupada por:</p>
+          <p class="card-category">Mesa ocupada por:</p>
           <h3 class="card-title"><?php print $consult['num_person']; ?></h3>
         </div>
         <div class="card-footer">
@@ -129,6 +129,34 @@ function disTablesData()
   } catch (\Exception $e) {}
 }
 
+function totalCons()
+{
+  require 'connection.php';
+  
+  try {
+    $_COUNT_SQL = "SELECT SUM(total_cost) AS result FROM consumo";
+    $resultCount = mysqli_query($con, $_COUNT_SQL);
+
+    while ($consult = mysqli_fetch_array($resultCount)) {
+      $totalCons = $consult['result'];
+      print $totalCons;
+    }
+  } catch (\Exception $e) {}
+}
+function totalPers()
+{
+  require 'connection.php';
+  
+  try {
+    $_COUNT_SQL = "SELECT SUM(num_person) AS suma FROM reservations";
+    $resultCount = mysqli_query($con, $_COUNT_SQL);
+
+    while ($consult = mysqli_fetch_array($resultCount)) {
+      $totalPers = $consult['suma'];
+      print $totalPers;
+    }
+  } catch (\Exception $e) {}
+}
 // FIXME: lista reservaciones realizadas
 
 function printReservations($valFact)

@@ -78,7 +78,7 @@ if (isset($_SESSION['user'])) {
 									<div class="tab-pane" id="details">
 										<div class="row">
 											<div class="col-sm-12">
-												<h4 class="info-text">Datos Personales.</h4>
+												<h4 class="info-text">Datos Personales</h4>
 											</div>
 											<div class="col-sm-6">
 												<div class="input-group">
@@ -189,11 +189,11 @@ if (isset($_SESSION['user'])) {
 								</div>
 								<div class="wizard-footer">
 									<div class="pull-right">
-										<input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' />
-										<input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finish' />
+										<input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Siguiente' />
+										<input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finalizar' />
 									</div>
 									<div class="pull-left">
-										<input type='button' class='btn btn-previous btn-fill btn-primary btn-wd' name='previous' value='Previous' />
+										<input type='button' class='btn btn-previous btn-fill btn-primary btn-wd' name='previous' value='Anterior' />
 
 									</div>
 									<div class="clearfix"></div>
