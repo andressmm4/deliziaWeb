@@ -113,6 +113,7 @@ function showTablesOcup()
   }
 }
 
+// FIXME: Cantidad de mesas ocupadas
 function disTablesData()
 {
   require 'connection.php';

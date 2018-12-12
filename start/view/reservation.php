@@ -133,7 +133,7 @@ if (isset($_SESSION['user'])) {
     //FIXME: Consulta de reservaciones vigentes
     setInterval(() => {
       var dataRev = $.ajax({
-        url: "../model/printReservations.php",
+        url: "../model/printFact.php",
         dataType: "text",
         asyns: false
       }).responseText
