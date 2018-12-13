@@ -264,8 +264,4 @@ function saveReservation($name, $num_p, $table)
 
 }
 
-function asigneMenu() {
-  
-}
-
 ?>
