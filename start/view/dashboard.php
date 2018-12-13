@@ -13,7 +13,7 @@ if(isset($_SESSION['user'])){
   <link rel="icon" type="image/png" href="assets/img/store.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    DELIZI
+    DELIZIA
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -33,7 +33,9 @@ if(isset($_SESSION['user'])){
       <!-- Navbar -->
       <?php require 'components/navbar.php'; ?>
       <div class="content">
-        <div class="container-fluid">
+
+        <!-- FIXME: Contenedor del Dashboard -->
+        <div id="content-dashboard" class="container-fluid">
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
@@ -145,6 +147,81 @@ if(isset($_SESSION['user'])){
 
           </div>
         </div>
+
+        <!-- FIXME: Contenedor de Reservaciones -->
+        <div id="content-reservation" class="container-fluid" hidden>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Reservaciones del día</h4>
+                  <p class="card-category">En proceso</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          NOMBRE
+                        </th>
+                        <th>
+                          MESA
+                        </th>
+                        <th>
+                          N. PERSONAS
+                        </th>
+                        <th>
+                          CONSUMO
+                        </th>
+                      </thead>
+                      <tbody id="reservations">
+                        <!-- FIXME: Vista de reservaciones en tiempo real -->                      
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title mt-0"> Facturado / Eliminado</h4>
+                  <p class="card-category">Mucho mas espacio</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead class="">
+                      <th>
+                          ID
+                        </th>
+                        <th>
+                          NOMBRE
+                        </th>
+                        <th>
+                          MESA
+                        </th>
+                        <th>
+                          N. PERSONAS
+                        </th>
+                        <th>
+                          CONSUMO
+                        </th>
+                      </thead>
+                      <tbody id="facts">
+                        <!-- FIXME: Vista de reservaciones facturadas en tiempo real -->                 
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <?php require 'components/footer.php'; ?>
 
@@ -169,13 +246,78 @@ if(isset($_SESSION['user'])){
   <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
-   <script>
-    $(document).ready(function() {
+  
+  <script>
+    var mp = document.getElementById('principal');
+    var mt = document.getElementById("principal");
+    var mc = document.getElementById("principal");
+    var mr = document.getElementById("principal");
+
+    document.getElementById("principal").addEventListener("click", function(){
+      mp.className += "active"
+      mt.className = "nav-item"
+      mc.className = "nav-item"
+      mr.className = "nav-item"
+    })
+
+    document.getElementById("tables").addEventListener("click", function(){
+      mp.className = "nav-item"
+      mt.className += "active"
+      mc.className = "nav-item"
+      mr.className = "nav-item"
+    })
+
+    document.getElementById("consumo").addEventListener("click", function(){
+      mp.className = "nav-item"
+      mt.className = "nav-item"
+      mc.className += "active"
+      mr.className = "nav-item"
+    })
+
+    document.getElementById("reserv").addEventListener("click", function(){
+      mp.className = "nav-item"
+      mt.className = "nav-item"
+      mc.className = "nav-item"
+      mr.className += "active"
+    })
+
+</script>
+
+<script>
+    //Realizar la consuta cada tiempo para tener los datos frescos
+    //FIXME: Consulta de reservaciones vigentes
+    setInterval(() function() {
+      var dataRev = $.ajax({
+        url: "../model/printReservations.php",
+        dataType: "text",
+        async: false
+      }).responseText;
+
+      var tableRev = document.getElementById('reservations')
+      tableRev.innerHTML = dataRev
+    }, 1000);
+
+    //FIXME: Consulta de reservaciones facturadas
+    setInterval(() function() {
+      var dataFact = $.ajax({
+        url: "../model/printFact.php",
+        dataType: "text",
+        async: false
+      }).responseText
+
+      var tableFact = document.getElementById('facts')
+      tableFact.innerHTML = dataFact
+    }, 1000)
+</script>
+<script>
+
+    $(document).ready( function() {
       // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+      md.initDashboardPageCharts()
 
     });
   </script>
+ 
 
 </body>
 </html>
