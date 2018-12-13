@@ -65,7 +65,7 @@ function showTablesDis()
                 <input style="color: black;" type="number" class="form-control" name="numP" placeholder="Num Perosnas">
               </div>
               <input hidden type="text" name="tablesSelect" value="<?php print $consult['id_table']; ?>">
-              <input type="submit" class="btn btn-primary" id="asigned" name="asigned" value="Guardar"> 
+              <input type="submit" class="btn btn-primary" id="asigned" name="asigned" value="Guardar">
             </form>
           </div>
         </div>
@@ -105,6 +105,7 @@ function showTablesOcup()
         <div class="card-footer">
           <div class="">
             <a href="#" class="btn btn-success">Asignar</a>
+            <input type="submit" class="btn btn-primary" id="fact" name="fact" value="Facturar">
           </div>
         </div>
       </div>
