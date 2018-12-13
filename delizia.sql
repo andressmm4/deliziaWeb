@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2018 a las 22:28:54
+-- Tiempo de generación: 13-12-2018 a las 18:49:21
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -48,8 +48,9 @@ INSERT INTO `consumo` (`id_cons`, `descript`, `total_cost`) VALUES
 (7, '0', 0),
 (8, '0', 0),
 (9, '0', 300),
-(10, '0', 100),
-(11, '11', 0);
+(11, '11', 800),
+(12, '0', 0),
+(13, '0', 0);
 
 -- --------------------------------------------------------
 
@@ -104,7 +105,9 @@ INSERT INTO `reservations` (`id_rev`, `date`, `name`, `num_person`, `consumo_asi
 (8, '2018-11-14', 'Michael Jackson', 1, 8, 3, '1'),
 (9, '2018-11-15', 'Sebastian Diaz', 6, 9, 10, '1'),
 (10, '2018-11-15', 'Juan Barrrios', 1, 10, 2, '1'),
-(11, '2018-12-09', 'Andres Montenegro', 2, 11, 1, '0');
+(11, '2018-12-09', 'Andres Montenegro', 2, 11, 1, '0'),
+(12, '2018-12-11', 'Gerson', 6, 12, 16, '0'),
+(13, '2018-12-12', '', 0, 13, 7, '0');
 
 -- --------------------------------------------------------
 
@@ -129,7 +132,7 @@ INSERT INTO `tables` (`id_table`, `capacity`, `available`) VALUES
 (4, 2, '0'),
 (5, 2, '0'),
 (6, 4, '0'),
-(7, 4, '0'),
+(7, 4, '1'),
 (8, 4, '0'),
 (9, 4, '0'),
 (10, 4, '0'),
@@ -138,11 +141,34 @@ INSERT INTO `tables` (`id_table`, `capacity`, `available`) VALUES
 (13, 6, '0'),
 (14, 6, '0'),
 (15, 6, '0'),
-(16, 6, '0'),
+(16, 6, '1'),
 (17, 6, '0'),
 (18, 6, '0'),
 (19, 6, '0'),
 (20, 6, '0');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `name` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `lastname` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `email` varchar(30) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `tel` int(9) NOT NULL,
+  `category` enum('1','2','3') CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `user` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `password` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`name`, `lastname`, `email`, `tel`, `category`, `user`, `password`) VALUES
+('Andres', 'Montenegro', 'andress.mm4@gmail.com', 31634911, '1', 'andres', '123');
 
 --
 -- Índices para tablas volcadas
@@ -169,10 +195,10 @@ ALTER TABLE `reservations`
   ADD KEY `asignarMesa` (`table_asigned`);
 
 --
--- Indices de la tabla `tables`
+-- Indices de la tabla `users`
 --
-ALTER TABLE `tables`
-  ADD PRIMARY KEY (`id_table`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`tel`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -188,7 +214,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id_rev` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_rev` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -199,12 +225,6 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `consumo`
   ADD CONSTRAINT `consumo_ibfk_1` FOREIGN KEY (`id_cons`) REFERENCES `reservations` (`id_rev`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `reservations`
---
-ALTER TABLE `reservations`
-  ADD CONSTRAINT `asignarMesa` FOREIGN KEY (`table_asigned`) REFERENCES `tables` (`id_table`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
