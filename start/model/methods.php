@@ -253,8 +253,9 @@ function saveReservation($name, $num_p, $table)
       $val = '1';
       changeAvailable($table, $val);
     }
-
   } catch (\Exception $e) {}
+  // Guardar Usuarip
+  
   ?>
   <script type="text/javascript">
     setTimeout("window.location.href = 'tables.php'", 0000)
@@ -263,6 +264,33 @@ function saveReservation($name, $num_p, $table)
 
 }
 
+function saveUser($name, $lastname, $email, $tel, $category, $user, $pass)
+{
+  require 'connection.php';
 
+  try {
+
+    $_INSERTuser_SQL = "INSERT INTO users (name, lastname, email, tel, category, user, password)
+    VALUES ('$name', '$lastname', '$email', '$tel', '$category', '$user', '$pass')";
+
+    $insertUser = mysqli_query($con, $_INSERTuser_SQL);
+
+    if ($insertUser) {
+      ?>
+      <script type="text/javascript">
+        alert('guardado')
+      </script>
+      <?php
+    }else{
+      ?>
+      <script type="text/javascript">
+        alert('no guardado')
+      </script>
+      <?php
+    }
+  } catch (\Exception $e) {}
+  // Guardar Usuarip
+  
+}
 
 ?>
