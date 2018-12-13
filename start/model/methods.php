@@ -249,7 +249,7 @@ function saveReservation($name, $num_p, $table)
     $insertReservation = mysqli_query($con, $_INSERTreservation_SQL);
 
     if ($insertReservation) {
-      updateConsumo($cons_asing, '0' , '0');
+      updateConsumo($cons_asing, $cons_asing , '0');
 
       $val = '1';
       changeAvailable($table, $val);
@@ -264,6 +264,8 @@ function saveReservation($name, $num_p, $table)
 
 }
 
-
+function asigneMenu() {
+  
+}
 
 ?>
