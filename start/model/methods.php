@@ -104,17 +104,57 @@ function showTablesOcup()
         </div>
         <div class="card-footer">
           <div class="">
-            <a href="#" class="btn btn-success">Asignar</a>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#<?php print $consult['id_table']; ?>">
+              Consumo
+            </button>
             <input type="submit" class="btn btn-primary" id="fact" name="fact" value="Facturar">
           </div>
         </div>
       </div>
     </div>
+
+    <!-- FIXME: modal de la mesa, para realizar reservación -->
+    <div class="modal fade" id="<?php print $consult['id_table']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">
+              <?php print $consult['id_table']; ?>
+            </h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <br>
+            <form method="post">
+              <p>             
+                <i class="material-icons">face</i> <?php print $consult['name']; ?> 
+              </p>
+              
+              <br>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                      <i class="material-icons">people</i>
+                  </span>
+                </div>
+                <input style="color: black;" type="number" class="form-control" name="consumo" placeholder="Consumo">
+              </div>
+              <input hidden type="text" name="selectCons" value="<?php print $consult['id_cons']; ?>">
+              <input type="submit" class="btn btn-primary" id="asignedConsumo" name="asignedConsumo" value="Asignar">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <?php
   }
 }
 
-// FIXME: Cantidad de mesas ocupadas
+// FIXME: Cantidad de mesas, consumo y perosnas
 function disTablesData()
 {
   require 'connection.php';
@@ -144,6 +184,7 @@ function totalCons()
     }
   } catch (\Exception $e) {}
 }
+
 function totalPers()
 {
   require 'connection.php';
@@ -158,8 +199,8 @@ function totalPers()
     }
   } catch (\Exception $e) {}
 }
-// FIXME: lista reservaciones realizadas
 
+// FIXME: lista reservaciones realizadas
 function printReservations($valFact)
 {
   require 'connection.php';
@@ -195,10 +236,6 @@ function printReservations($valFact)
   }
 }
 
-
-
-
-
 // FIXME: Cambio de valor de Mesa
 function changeAvailable($tableSelect, $val)
 {
@@ -209,7 +246,7 @@ function changeAvailable($tableSelect, $val)
     $updateTable = mysqli_query($con, $_UPDATEtable_SQL);
   } catch (\Exception $e) {}
 }
- 
+
 
 // FIXME: Actualizar consumo
 function updateConsumo($id_cons, $desc, $const)
@@ -221,6 +258,36 @@ function updateConsumo($id_cons, $desc, $const)
     $insertConsumo = mysqli_query($con, $_INSERTconsumo_SQL);
 
   } catch (\Exception $e) {}
+}
+
+function newConsumo($selectCons, $cons)
+{
+  require 'connection.php';
+  try {
+
+    $SQL_SELECT_cons = "SELECT consumo.total_cost FROM consumo WHERE consumo.id_cons = '$selectCons'";
+    $actionSelect = mysqli_query($con, $SQL_SELECT_cons);
+
+    if ($actionSelect) {
+      while ($result = mysqli_fetch_array($actionSelect)) {
+        $oldCosn = $result['total_cost'];
+      }
+
+      try {
+        $newCons = $oldCosn + $cons;
+  
+        $SQL_UPDATE_cons = "UPDATE `consumo` SET `total_cost` = '$newCons' WHERE `consumo`.`id_cons` = '$selectCons'";
+        $actionUpdate = mysqli_query($con, $SQL_UPDATE_cons);
+  
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
+
+    }   
+
+  } catch (\Throwable $th) {
+    //throw $th;
+  }
 }
 
 // FIXME: Guardar reservacion

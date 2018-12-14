@@ -12,10 +12,18 @@ if (isset($_REQUEST['asigned'])) {
   print "Si entro al if";
   require '../model/methods.php';
   saveReservation( $name, $num_p, $table);
-
-
 }
 
+if (isset($_REQUEST['asignedConsumo'])) {
+
+	$selectCons = $_REQUEST['selectCons'];
+	$cons = $_REQUEST['consumo'];
+
+	require '../model/methods.php';
+	newConsumo($selectCons, $cons);
+}
+
+//FIXME: Guardar un nuevo Usuario
 if (isset($_REQUEST['finish'])) {
 	$name = $_REQUEST['name'];
 	$lastname = $_REQUEST['lastname'];

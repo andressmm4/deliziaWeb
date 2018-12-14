@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])) {
-  require '../model/methods.php';
+  require '../control/actions.php';
+  require_once '../model/methods.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
