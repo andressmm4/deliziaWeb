@@ -3,6 +3,9 @@ session_start();
 if (isset($_SESSION['user'])) {
   require '../control/actions.php';
   require_once '../model/methods.php';
+  if($_SESSION['user'] == "mesero"){
+    print '<script> window.location="notAccess" </script>';
+  } else {
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -40,7 +43,6 @@ if (isset($_SESSION['user'])) {
       <?php require 'components/footer.php'; ?>
     </div>
   </div>
-  <?php require 'modal.php'; ?>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -63,7 +65,8 @@ if (isset($_SESSION['user'])) {
 
 </html>
 <?php
+  }
 }else {
-  print '<script> window.location="error_login.php" </script>';
+  print '<script> window.location="error_login" </script>';
 }
  ?>

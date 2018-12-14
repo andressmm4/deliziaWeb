@@ -1,11 +1,3 @@
-<?php
-// inicialization session
-session_start();
-// remove all session variables
-session_unset();
-// destroy the session
-session_destroy();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,15 +36,16 @@ session_destroy();
     </div>
   </nav>
   <!-- End Navbar -->
+
   <div class="page-header clear-filter">
     <div class="page-header-image" style="background-image: url('../assets/img/sidebar-2.jpg');"></div>
     <div class="content-center">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand">
           <h1 class="title">
-            Sesión Cerrada
+            ERROR
           </h1>
-          <h3 class="description">Tu sesion se ha cerrado con exito...!</h3>
+          <h3 class="description">No posees permisos para acceder...!</h3>
           <br/>
           <!-- <a href="dashboard.php" class="btn btn-primary btn-round btn-lg">Entrar</a> -->
         </div>
@@ -63,31 +56,37 @@ session_destroy();
     <div class="container-fluid">
       <div class="copyright float-right">
         <i class="material-icons">copyright</i>2018 by
-        <a href="#andres" target="">Andres Montenegro</a> DEVELOPER.
+        <a href="#andres" target="">A.S.A</a> DEVELOPER.
       </div>
     </div>
   </footer>
   <script>
     const x = new Date().getFullYear();
     let date = document.getElementById('date');
-    date.innerHTML = '&copy; ' + x + date.innerHTML;</script>
+    date.innerHTML = '&copy; ' + x + date.innerHTML;
+  </script>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="https://unpkg.com/default-passive-events"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chartist JS -->
   <script src="../assets/js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-   <script src="../assets/demo/demo.js"></script>
+  <script src="../assets/demo/demo.js"></script>
   <script type="text/javascript">
     function redirection() {
-      window.location = "../login/"
+      window.location = "add"
     }
-    setTimeout("redirection()", 3000)</script>
+    setTimeout("redirection()", 3000)
+  </script>
 </body>
 
 </html>

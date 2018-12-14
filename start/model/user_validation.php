@@ -1,5 +1,5 @@
 <?php
-	session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,33 +10,61 @@
 </head>
 </head>
 <body>
-		<?php
-			// include 'serv.php';
-			function UserValidation($user, $pw)
-			{
-				if ($user != "admin") {
-					print "Usuario no valido";
-				} else {
-					if ($pw != "123") {
-						print "password incorrecta";
-					} else {
-						$_SESSION['user'] = $user;
-						?>
-						<script type="text/javascript">
-							function redirection() {
-								window.location = "../view/dashboard.php"
-							}
-							setTimeout("redirection()", 0000)
-						</script>
-						<?php
+	<?php
+
+	function UserValidation($user, $pw)
+	{
+		if ($user == "admin") {
+
+			if ($pw != "123") {
+				print "password incorrecta";
+			} else {
+				$_SESSION['user'] = $user;
+				?>
+				<script type="text/javascript">
+					function redirection() {
+						window.location = "../view/dashboard"
 					}
-				}
+					setTimeout("redirection()", 0000)</script>
+				<?php
 			}
 
-			function logaut()
-			{
-					session_destroy();
+		} else if ($user == "recep") {
+
+			if ($pw != "456") {
+				print "password incorrecta";
+			} else {
+				$_SESSION['user'] = $user;
+				?>
+				<script type="text/javascript">
+					function redirection() {
+						window.location = "../view/dashboard"
+					}
+					setTimeout("redirection()", 0000)</script>
+				<?php
 			}
-		?>
+
+		} else if ($user == "mesero") {
+
+			if ($pw != "789") {
+				print "password incorrecta";
+			} else {
+				$_SESSION['user'] = $user;
+				?>
+				<script type="text/javascript">
+					function redirection() {
+						window.location = "../view/add"
+					}
+					setTimeout("redirection()", 0000)</script>
+				<?php
+			}
+		}
+	}
+	
+	function logaut()
+	{
+		session_destroy();
+	}
+	?>
 </body>
 </html>

@@ -2,6 +2,9 @@
 session_start();
 if (isset($_SESSION['user'])) {
   require '../model/methods.php';
+  if($_SESSION['user'] == "mesero"){
+    print '<script> window.location="notAccess" </script>';
+  } else {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,13 +155,12 @@ if (isset($_SESSION['user'])) {
 
       var tableFact = document.getElementById('facts')
       tableFact.innerHTML = dataFact
-    }, 1000);
-
-  </script>
+    }, 1000);</script>
 </body>
 </html>
 <?php
+  }
 } else {
-  print '<script> window.location="error_login.php" </script>';
+  print '<script> window.location="error_login" </script>';
 }
  ?>
