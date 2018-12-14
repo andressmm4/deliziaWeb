@@ -107,7 +107,11 @@ function showTablesOcup()
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#<?php print $consult['id_table']; ?>">
               Consumo
             </button>
-            <input type="submit" class="btn btn-primary" id="fact" name="fact" value="Facturar">
+            <form method="post">
+              <input hidden type="text" name="idRev" value="<?php print $consult['id_rev']; ?>">
+              <input hidden type="text" name="tableSelect" value="<?php print $consult['id_table']; ?>">
+              <input type="submit" class="btn btn-primary" id="fact" name="fact" value="Facturar">
+            </form>
           </div>
         </div>
       </div>
@@ -310,8 +314,7 @@ function saveReservation($name, $num_p, $table)
 
   try {
 
-    $_INSERTreservation_SQL = "INSERT INTO reservations(date, name, num_person, consumo_asigned, table_asigned, fact)
-    VALUES ('$today', '$name', '$num_p', '$cons_asing', '$table', '0')";
+    $_INSERTreservation_SQL = "INSERT INTO reservations(date, name, num_person, consumo_asigned, table_asigned, fact) VALUES ('$today', '$name', '$num_p', '$cons_asing', '$table', '0')";
 
     $insertReservation = mysqli_query($con, $_INSERTreservation_SQL);
 
@@ -322,43 +325,36 @@ function saveReservation($name, $num_p, $table)
       changeAvailable($table, $val);
     }
   } catch (\Exception $e) {}
-  // Guardar Usuarip
   
   ?>
-  <script type="text/javascript">
-    setTimeout("window.location.href = 'tables.php'", 0000)
-  </script>
+  <script type="text/javascript"> setTimeout("window.location.href = 'tables.php'", 0000)</script>
   <?php
 
 }
 
+//FIXME: Nuevo usuario
 function saveUser($name, $lastname, $email, $tel, $category, $user, $pass)
 {
   require 'connection.php';
 
   try {
 
-    $_INSERTuser_SQL = "INSERT INTO users (name, lastname, email, tel, category, user, password)
-    VALUES ('$name', '$lastname', '$email', '$tel', '$category', '$user', '$pass')";
+    $_INSERTuser_SQL = "INSERT INTO users (name, lastname, email, tel, category, user, password) VALUES ('$name', '$lastname', '$email', '$tel', '$category', '$user', '$pass')";
 
     $insertUser = mysqli_query($con, $_INSERTuser_SQL);
 
-    if ($insertUser) {
-      ?>
-      <script type="text/javascript">
-        alert('guardado')
-      </script>
-      <?php
-    }else{
-      ?>
-      <script type="text/javascript">
-        alert('no guardado')
-      </script>
-      <?php
-    }
   } catch (\Exception $e) {}
-  // Guardar Usuarip
   
 }
 
+//FIXME: Facturacion
+function fact($id_rev) {
+  require 'connection.php';
+
+  try {
+    $SQL_UPDATE_reserv= "UPDATE reservations SET fact = '1' WHERE reservations.id_rev = '$id_rev'";
+    $UPDATEreserv = mysqli_query($con, $SQL_UPDATE_reserv);
+
+  } catch (\Exception $e) {}
+}
 ?>

@@ -14,6 +14,7 @@ if (isset($_REQUEST['asigned'])) {
   saveReservation( $name, $num_p, $table);
 }
 
+//FIXME: Asiganer nuevo consumo
 if (isset($_REQUEST['asignedConsumo'])) {
 
 	$selectCons = $_REQUEST['selectCons'];
@@ -21,6 +22,17 @@ if (isset($_REQUEST['asignedConsumo'])) {
 
 	require '../model/methods.php';
 	newConsumo($selectCons, $cons);
+}
+
+//FIXME: Facturar
+if (isset($_REQUEST['fact'])) {
+	$idRev = $_REQUEST['idRev'];
+	$tableSelect = $_REQUEST['tableSelect'];
+	$val = 0;
+	
+	require '../model/methods.php';
+	fact($idRev);
+	changeAvailable($tableSelect, $val);
 }
 
 //FIXME: Guardar un nuevo Usuario
