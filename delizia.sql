@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2018 a las 18:49:21
+-- Tiempo de generación: 14-12-2018 a las 03:47:04
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -39,18 +39,7 @@ CREATE TABLE `consumo` (
 --
 
 INSERT INTO `consumo` (`id_cons`, `descript`, `total_cost`) VALUES
-(1, '0', 500),
-(2, '0', 1000),
-(3, '0', 70),
-(4, '0', 200),
-(5, '0', 1000),
-(6, '0', 0),
-(7, '0', 0),
-(8, '0', 0),
-(9, '0', 300),
-(11, '11', 800),
-(12, '0', 0),
-(13, '0', 0);
+(1, '1', 50);
 
 -- --------------------------------------------------------
 
@@ -95,19 +84,7 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id_rev`, `date`, `name`, `num_person`, `consumo_asigned`, `table_asigned`, `fact`) VALUES
-(1, '2018-11-14', 'Diego', 4, 1, 5, '1'),
-(2, '2018-11-14', 'Andres', 2, 2, 1, '1'),
-(3, '2018-11-14', 'Andres', 4, 3, 9, '1'),
-(4, '2018-11-14', 'Juan', 4, 4, 20, '1'),
-(5, '2018-11-14', 'Pedro', 6, 5, 18, '1'),
-(6, '2018-11-14', 'Juan Pablo Segundo', 6, 6, 17, '1'),
-(7, '2018-11-14', 'Juan Domingez', 5, 7, 12, '1'),
-(8, '2018-11-14', 'Michael Jackson', 1, 8, 3, '1'),
-(9, '2018-11-15', 'Sebastian Diaz', 6, 9, 10, '1'),
-(10, '2018-11-15', 'Juan Barrrios', 1, 10, 2, '1'),
-(11, '2018-12-09', 'Andres Montenegro', 2, 11, 1, '0'),
-(12, '2018-12-11', 'Gerson', 6, 12, 16, '0'),
-(13, '2018-12-12', '', 0, 13, 7, '0');
+(1, '2018-12-14', 'Andres Montenegro', 2, 1, 1, '0');
 
 -- --------------------------------------------------------
 
@@ -132,7 +109,7 @@ INSERT INTO `tables` (`id_table`, `capacity`, `available`) VALUES
 (4, 2, '0'),
 (5, 2, '0'),
 (6, 4, '0'),
-(7, 4, '1'),
+(7, 4, '0'),
 (8, 4, '0'),
 (9, 4, '0'),
 (10, 4, '0'),
@@ -141,7 +118,7 @@ INSERT INTO `tables` (`id_table`, `capacity`, `available`) VALUES
 (13, 6, '0'),
 (14, 6, '0'),
 (15, 6, '0'),
-(16, 6, '1'),
+(16, 6, '0'),
 (17, 6, '0'),
 (18, 6, '0'),
 (19, 6, '0'),
@@ -195,6 +172,12 @@ ALTER TABLE `reservations`
   ADD KEY `asignarMesa` (`table_asigned`);
 
 --
+-- Indices de la tabla `tables`
+--
+ALTER TABLE `tables`
+  ADD PRIMARY KEY (`id_table`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -214,7 +197,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id_rev` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_rev` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
