@@ -45,7 +45,7 @@ function showTablesDis()
           </div>
           <div class="modal-body">
           <br>
-            <form action="">
+            <form method="post">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
