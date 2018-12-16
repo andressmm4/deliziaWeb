@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2018 a las 03:47:04
+-- Tiempo de generación: 16-12-2018 a las 21:33:42
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -39,7 +39,7 @@ CREATE TABLE `consumo` (
 --
 
 INSERT INTO `consumo` (`id_cons`, `descript`, `total_cost`) VALUES
-(1, '1', 50);
+(1, '1', 75);
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,8 @@ CREATE TABLE `users` (
   `name` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `lastname` varchar(20) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `email` varchar(30) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
-  `tel` int(9) NOT NULL,
-  `category` enum('1','2','3') CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `tel` int(10) NOT NULL,
+  `category` set('1','2','3') CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `user` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `password` varchar(10) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -145,7 +145,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`name`, `lastname`, `email`, `tel`, `category`, `user`, `password`) VALUES
-('Andres', 'Montenegro', 'andress.mm4@gmail.com', 31634911, '1', 'andres', '123');
+('Andres', 'Montenegro', 'andress.mm4@gmail.com', 31634911, '1', 'admin', '123'),
+('Alan', 'Montenegro', 'andressmontenegroo@gmail.com', 32568941, '2', 'recep', '456'),
+('Juan', 'Perez', 'juan@perez.com', 12457896, '3', 'mesero', '789');
 
 --
 -- Índices para tablas volcadas
@@ -181,7 +183,7 @@ ALTER TABLE `tables`
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`tel`);
+  ADD PRIMARY KEY (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas

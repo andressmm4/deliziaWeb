@@ -9,7 +9,6 @@ if (isset($_REQUEST['asigned'])) {
   $num_p = $_REQUEST['numP'];
   $table = $_REQUEST['tablesSelect'];
 
-  print "Si entro al if";
   require '../model/methods.php';
   saveReservation( $name, $num_p, $table);
 }
@@ -41,7 +40,7 @@ if (isset($_REQUEST['finish'])) {
 	$lastname = $_REQUEST['lastname'];
 	$email = $_REQUEST['email'];
 	$tel = $_REQUEST['tel'];
-	$category = $_REQUEST['category'];
+	$category = "3";
 	$user = $_REQUEST['user'];
 	$pass = $_REQUEST['pass'];
 

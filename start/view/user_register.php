@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user'])) {
-  require '../control/actions.php';
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -204,6 +204,8 @@ if (isset($_SESSION['user'])) {
 					</div>
 					
 				</form>
+
+				<?php require '../control/actions.php'; ?>
 			</div> <!-- row -->
 		</div> <!--  big container -->
 
